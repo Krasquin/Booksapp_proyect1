@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+Listado de libros prestados
+{% endblock titulo %}
+
+{% block body %}
+
+<h1>Lista de libros prestados</h1>
+   
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Fecha de devolucion</th>
+                    <th>Usuario</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prestamo in object_list %}
+                    <tr>
+                        <td>{{ prestamo.libro.titulo }}</td>
+                        <td>{{ prestamo.fechaDev }}</td>
+                        <td>{{ prestamo.usuario }}</td>
+                        <td>
+                            <a href="{% url 'libreria:prestar_libro' prestamo.id %}">Editar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+</br>
+
+<ul>
+    <li><a href="{% url 'index' %}">IR A PANEL DE CONTROL</a></li>
+
+</ul>
+{% endblock body %}
+

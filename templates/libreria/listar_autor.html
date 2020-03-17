@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+Listado de autores
+{% endblock titulo %}
+
+{% block body %}
+
+<h1>Lista de libros</h1>
+   
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in object_list %}
+                    <tr>
+                        <td>{{ autor.nombre }}</td>
+                        <td>{{ autor.apellido }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+</br>
+
+<ul>
+    <li><a href="{% url 'index' %}">IR A PANEL DE CONTROL</a></li>
+    <li><a href="{% url 'libreria:crear_libro' %}">CREAR LIBRO</a></li>
+    <li><a href="{% url 'libreria:crear_autor' %}">CREAR AUTOR</a></li>
+</ul>
+{% endblock body %}

@@ -1,0 +1,14 @@
+{% extends 'index.html' %} 
+
+{% block titulo %}
+Registro prestamo
+{% endblock titulo %}
+
+{% block body %}
+<h1>Registro de prestamo</h1>
+    <form method="POST">
+        {% csrf_token %}            <!--Es para que django valide lo que loe viene el metodo POST-->
+        {{ form.as_p }}       <!--Lo pinta como parrafo. Esto es el formulario que se ve-->
+        <button type = "submit">Crear</button>
+    </form>
+{% endblock body %} 

@@ -1,0 +1,14 @@
+{% extends 'index.html' %} <!--Con esto indico que este template hereda de index.html-->
+<!--Por eso están marcados los tags de bloques en index.html-->
+
+{% block titulo %}
+Ingreso nuevo libro
+{% endblock titulo %}
+
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}            <!--Es para que django valide lo que loe viene el metodo POST-->
+        {{ form.as_p }}       <!--Lo pinta como parrafo. Esto es el formulario que se ve-->
+        <button type = "submit">Crear</button>
+    </form>
+{% endblock body %} 

@@ -1,0 +1,12 @@
+{% extends 'index.html' %} 
+
+{% block titulo %}
+Confirmacion
+{% endblock titulo %}
+
+{% block body %}
+<form method="post">{% csrf_token %}
+    <p>Confirma borrar el libro "{{ object.titulo }} {{ object.autor }}"?</p>
+    <input type="submit" value="Borrar">
+</form>
+{% endblock body %} 

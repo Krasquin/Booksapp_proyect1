@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+Listado de libros
+{% endblock titulo %}
+
+{% block body %}
+
+<h1>Lista de libros</h1>
+   
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Genero</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                    <tr>
+                        <td>{{ libro.titulo }}</td>
+                        <td>{{ libro.autor }}</td>
+                        <td>{{ libro.genero }}</td>
+                        <td>
+                            <a href="{% url 'libreria:ver_libro' libro.id %}">Ver</a>
+                            <a href="{% url 'libreria:editar_libro' libro.id %}">Editar</a>
+                            <a href="{% url 'libreria:eliminar_libro' libro.id %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+</br>
+
+<ul>
+    <li><a href="{% url 'index' %}">IR A PANEL DE CONTROL</a></li>
+    <li><a href="{% url 'libreria:crear_libro' %}">CREAR LIBRO</a></li>
+    <li><a href="{% url 'libreria:crear_autor' %}">CREAR AUTOR</a></li>
+</ul>
+{% endblock body %}
+    

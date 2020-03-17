@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <title>{% block titulo %}BooksApp - Home page{% endblock titulo%}</title><!--block es un tag para la herencia de templates-->
+    {% block extracss %}
+    <style>
+        body {
+          font-family: Roboto;
+          background-color: rgb(245, 220, 206);
+        }
+        
+        h1 {
+          color: black;
+          font-family: Roboto;
+        }
+        h2 {
+          color: black;
+          font-family: Roboto;
+        }
+        
+        p {
+          font-family: Roboto;
+          font-size: 20px;
+        }
+        </style>
+    {% endblock extracss %}
+</head>
+<body>
+    {% block body %}
+    <h1>BooksApp - Libreria Online</h1>
+    <ul>
+      <li><strong>Cantidad total de libros:</strong> {{ num_libros }}</li>
+      <li><strong>Cantidad de libros prestados:</strong> {{ num_prestamos }}</li>
+      <li><strong>Cantidad de libros disponibles:</strong> {{ num_libros_disponibles }}</li>
+      <li><strong>Cantidad de autores:</strong> {{ num_autores }}</li>
+    </ul>
+
+    <form action="{% url 'libreria:listar_libro' %}" method="get">
+        <input name="q" type="text" placeholder="busqueda por autor o titulo.....">
+        <button>Buscar</button><br><br>
+      </form>
+    
+    
+    <form action="{% url 'libreria:crear_libro' %}" method ="get">
+        <input type="submit" value="Crear libro"></form>
+    </form>
+    <br>
+    <form action="{% url 'libreria:crear_autor' %}" method ="get">
+      <input type="submit" value="Crear autor"></form>
+    </form>
+    <br>
+    <form action="{% url 'libreria:listar_autor' %}" method ="get">
+      <input type="submit" value="Listar autores"></form>
+    </form>
+    <br>
+    <form action="{% url 'libreria:prestar_libro' %}" method ="get">
+      <input type="submit" value="Prestar libro"></form>
+    </form>
+    <br>
+    <form action="{% url 'libreria:listar_prestados' %}" method ="get">
+      <input type="submit" value="Lista de prestamos"></form>
+    </form>
+    
+    {% endblock body %}
+    {% block pagination %}
+  {% if is_paginated %}
+      <div class="pagination">
+          <span class="page-links">
+              {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="page-current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+          </span>
+      </div>
+  {% endif %}
+{% endblock %} 
+
+    {% block extrajs %}
+    {% endblock extrajs %}
+    
+</body>
+</html>

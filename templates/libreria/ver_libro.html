@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+Ver detelles del libro
+{% endblock titulo %}
+
+{% block body %}
+<h2>Titulo: {{object.titulo}}</h2>
+<h3>Autor: {{ object.autor }}</h3>
+<h4>Genero: {{ object.genero }}</h4>
+
+    {% if object.portada %}
+
+    <img src="{{ libro.portada.url }}" alt="">
+    
+    {% endif %}
+    
+    <p>{{ object.resumen }}</p>
+
+{% endblock body %}
